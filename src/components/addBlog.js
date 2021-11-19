@@ -34,18 +34,7 @@ const AddBlog = () => {
             body: JSON.stringify(values)
         }
 
-        fetch(url + 'video/add', reqOp)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-
-                if (data.message == 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Video Added Successfully!!'
-                    })
-                }
-            })
+        
     }
 
     const uploadThumbnail = (event) => {

@@ -58,10 +58,10 @@ const Header = (props) => {
                         <Link className="nav-link" to="/home">Home</Link>
                     </li>
                     <li className="nav-item">
-                            <Link className="nav-link" to="/listvideo">Blogs</Link>
+                            <Link className="nav-link" to="/listblog">Blogs</Link>
                     </li>
                     <li className="nav-item">
-                            <Link className="nav-link" to="/listvideo">Add Blog</Link>
+                            <Link className="nav-link" to="/listblog">Add Blog</Link>
                     </li>
 
 
