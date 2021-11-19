@@ -64,7 +64,7 @@ const  Login = ( ) => {
       <div className="col-md-3 mx-auto" >
           <div className="tier1" id="login">
           < div  className = { clsx ( 'card' ,  classes . mycard ) }  style = { {  marginTop : '5rem',  } } >
-              <div className="card-bod">
+              <div className="card-body">
 
                   <div className="col-md-4 mx-auto mt-4">
                   <h3>LOGIN</h3>
