@@ -1,136 +1,170 @@
-import { Button, FormControl, MenuItem, TextField } from "@material-ui/core";
+import {
+  Box,
+  makeStyles,
+  formControl,
+  InputBase,
+  Button,
+  TextareaAutosize,
+} from "@material-ui/core";
+import { AddCircle } from "@material-ui/icons";
 import { Formik } from "formik";
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import app_config from "../config";
-import  Swal  from  "sweetalert2" ;
 import { useState } from "react";
-import "../stylesheets/addBlog.css";
+import app_config from "../config";
+import MDEditor from "@uiw/react-md-editor";
 
+import Swal from "sweetalert2";
 
+const useStyle = makeStyles((theme) => ({
+  container: {
+    padding: "0 100px",
+    [theme.breakpoints.down("md")]: {
+      padding: 0,
+    },
+  },
+  image: {
+    width: "100%",
+    height: "50vh",
+    objectFit: "cover",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 10,
+  },
+  textfield: {
+    flex: 1,
+    margin: "0 30px",
+    fontSize: 25,
+  },
+  textarea: {
+    width: "100%",
+    border: "none",
+    marginTop: 50,
+    fontSize: 18,
+    "&:focus-visible": {
+      outline: "none",
+    },
+  },
+}));
+
+const intialValues = {
+  title: "",
+  description: "",
+  picture: "",
+  userName: "codeforinterview",
+  categories: "All",
+  createDate: new Date(),
+};
 const AddBlog = () => {
+  const classes = useStyle();
+  const url =
+    "https://www.webnode.com/blog/wp-content/uploads/2019/04/blog2.png";
 
-    const url = app_config.api_url;
-    const [thumb, setThumb] = useState("");
-    const [videoFile, setVideoFile] = useState("");
+  const [post, setPost] = useState(intialValues);
+  const [blogvalue, setblogValue] = useState("**Write Blog Content Here**");
+  const [thumbnail, setThumbnail] = useState("");
+  const api_url = app_config.api_url;
 
-    const blogform = {
-        title: '',
-        description: '',
-        category: '',
-        thumbnail: '',
-        file: '',
-        created: new Date()
-    }
+  const handleChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
 
-    const formSubmit = (values) => {
-        console.log(values);
-        values.thumbnail = thumb;
-        values.file = videoFile;
+  const blogForm = {
+    title: "",
+    description: "",
+    image: "",
+    data: "",
+  };
 
-        const  reqOp  =  {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(values)
-        }
+  const addBlog = (values) => {
+    values.image = thumbnail;
+    values.data = blogvalue;
+    console.log(values);
+    fetch(api_url + "/blog/add", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Blog Added Successfully",
+        });
+      });
+  };
 
-        
-    }
+  const uploadThumbnail = (e) => {
+    const selFile = e.target.files[0];
 
-    const uploadThumbnail = (event) => {
-        const formdata = new FormData();
-        formdata.append('file', event.target.files[0]);
+    console.log(selFile);
 
-        const reqOptions = {
-            method: 'POST',
-            body: formdata
-        }
+    const tempForm = new FormData();
+    tempForm.append("file", selFile);
 
-        fetch(url + 'util/addfile', reqOptions)
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data);
-                setThumb(event.target.files[0].name)
-            })
+    fetch(api_url + "/util/uploadfile", { method: "POST", body: tempForm })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setThumbnail(selFile.name);
+      });
+  };
 
-    }
+  return (
+    <Box className={classes.container}>
+      <img className={classes.image} src={url} alt="" />
 
-    const uploadVideo = (event) => {
-        const formdata = new FormData();
-        formdata.append('file', event.target.files[0]);
-
-        const reqOptions = {
-            method: 'POST',
-            body: formdata
-        }
-
-        fetch(url + 'util/addfile', reqOptions)
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data);
-                setVideoFile(event.target.files[0].name)
-            })
-
-    }
-
-
-
-    return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6"></div>
-                <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-body">
-
-                            <h2>Add Blog</h2>
-                            <hr />
-
-                            <Formik
-                                initialValues = { blogform }
-                                onSubmit={formSubmit}
-                            >
-                                {({
-                                    values,
-                                    handleChange,
-                                    handleSubmit
-                                }) => (
-                                    <form onSubmit={handleSubmit}>
-
-                                        <TextField className="w-100 mt-4" label="Title" variant="filled" id="title" onChange={handleChange} value={values.title}></TextField>
-                                        <TextField multiline rows={5} className="w-100 mt-4" label="Description" variant="filled" id="description" onChange={handleChange} value={values.description}></TextField>
-                                        <FormControl className="w-100 mt-4" variant="filled">
-                                            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                name="category"
-                                                value={values.category}
-                                                onChange={handleChange}
-                                            >
-                                                <MenuItem value={''}>None</MenuItem>
-                                                <MenuItem value={'Movie'}>Movie</MenuItem>
-                                                <MenuItem value={'WebSeries'}>Web Series</MenuItem>
-                                                <MenuItem value={'TVShows'}>TV Series</MenuItem>
-                                            </Select>
-                                        </FormControl>
-
-                                        <input onChange={uploadThumbnail} type="file" className="form-control mt-4" title="Select Thumbnail" />
-
-                                        
-
-                                        <Button className="w-100 mt-5" variant="contained" color="primary" type="submit">
-                                            Submit
-                                        </Button>
-                                    </form>
-                                )}
-                            </Formik>
-
-                        </div>
-                    </div>
-                </div>
+      <Formik initialValues={blogForm} onSubmit={addBlog}>
+        {({ values, handleChange, handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="form-floating mt-5">
+              <input
+                className="form-control"
+                placeholder="title"
+                id="title"
+                onChange={handleChange}
+                value={values.title}
+              />
+              <label htmlFor="title">Blog Title</label>
             </div>
-        </div>
-    )
-}
+            <div className="form-floating mt-3">
+              <textarea
+                placeholder="description"
+                className="form-control"
+                id="description"
+                onChange={handleChange}
+                value={values.description}
+              ></textarea>
+              <label htmlFor="Description">Description</label>
+            </div>
 
-export  default  AddBlog ;
+            <label className="mt-3">Upload File</label>
+            <input
+              onChange={uploadThumbnail}
+              className="form-control"
+              type="file"
+            />
+            <MDEditor
+              value={blogvalue}
+              onChange={setblogValue}
+              className="mt-3"
+            />
+
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              className="float-start mt-5 mb-5"
+            >
+              <AddCircle />
+              &nbsp; Create Blog
+            </Button>
+          </form>
+        )}
+      </Formik>
+    </Box>
+  );
+};
+export default AddBlog;
