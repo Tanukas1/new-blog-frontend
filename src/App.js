@@ -11,6 +11,7 @@ import ViewBlog from "./components/viewBlog";
 import ListBlog from "./components/listBlog";
 import { BlogProvider } from "./blogContext";
 import Footer from "./components/footer";
+import ManageBlog from "./components/manage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route component={AddBlog} path={"/AddBlog"}></Route>
           <Route component={ViewBlog} path={"/viewBlog/:id"}></Route>
           <Route component={ListBlog} path={"/listblog"}></Route>
+          <Route component={ManageBlog} path={"/manage"}></Route>
           <Route exact path="/">
             <Redirect to="/AddBlog" />
           </Route>
