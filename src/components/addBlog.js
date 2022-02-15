@@ -58,7 +58,7 @@ const intialValues = {
 const AddBlog = () => {
   const classes = useStyle();
   const url =
-    "https://www.webnode.com/blog/wp-content/uploads/2019/04/blog2.png";
+    "https://i.pcmag.com/imagery/articles/05LXP8WPMNAES8LK4rf9IZQ-13..v1633113383.jpg";
 
   const [post, setPost] = useState(intialValues);
   const [blogvalue, setblogValue] = useState("**Write Blog Content Here**");
@@ -80,7 +80,7 @@ const AddBlog = () => {
     values.image = thumbnail;
     values.data = blogvalue;
     console.log(values);
-    fetch(api_url + "/blog/add", {
+    fetch(api_url + "blog/add", {
       method: "POST",
       body: JSON.stringify(values),
       headers: { "Content-Type": "application/json" },
@@ -104,7 +104,7 @@ const AddBlog = () => {
     const tempForm = new FormData();
     tempForm.append("file", selFile);
 
-    fetch(api_url + "/util/uploadfile", { method: "POST", body: tempForm })
+    fetch(api_url + "util/uploadfile", { method: "POST", body: tempForm })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

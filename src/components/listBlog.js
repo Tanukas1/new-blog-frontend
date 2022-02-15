@@ -45,7 +45,7 @@ const Listblogs = () => {
   const [blogList, setblogList, loading, setLoading] = useContext(BlogContext);
 
   useEffect(() => {
-    fetch(url + "/blog/getall")
+    fetch(url + "blog/getall")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

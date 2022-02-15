@@ -80,7 +80,7 @@ const UpdateBlog = () => {
     values.image = thumbnail;
     values.data = blogvalue;
     console.log(values);
-    fetch(api_url + "/blog/update", {
+    fetch(api_url + "blog/update", {
       method: "PUT",
       body: JSON.stringify(values),
       headers: { "Content-Type": "application/json" },
@@ -104,7 +104,7 @@ const UpdateBlog = () => {
     const tempForm = new FormData();
     tempForm.append("file", selFile);
 
-    fetch(api_url + "/util/uploadfile", { method: "POST", body: tempForm })
+    fetch(api_url + "util/uploadfile", { method: "POST", body: tempForm })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
