@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import image from '../images/blog.png';
 import '../stylesheets/home.css';
 function Home (){
@@ -55,63 +55,6 @@ function Home (){
         </div>
         
         <div class="col-lg-3 col-md-7 col-11  justify-content-end m-lg-0 m-auto ">
-                            <div class="row gy-5 left_div__blog">                            
-                                <div class=" popular_post ">
-                                    <div class="right_div__title py-4 pl-2 ">
-                                        <h2>Popular Posts</h2>
-                                    </div>
-                                    <div class="right_sub__div shadow">
-                                        <div class="row ">
-                                            <div class="col-3  popular_post__img1 py-2 pl-2">
-                                            </div>
-                                            <div class="col-9">
-                                                <h5>Beautiful & Special Moment</h5>
-                                                <p class="text-capitalize">5 october 2021</p>
-                                            </div>
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-3  popular_post__img2 py-2 pl-2">
-                                            </div>
-                                            <div class="col-9">
-                                                <h5>Beautiful & Special Moment</h5>
-                                                <p class="text-capitalize">5 october 2021</p>
-                                            </div>
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-3  popular_post__img3 py-2 pl-2">
-                                            </div>
-                                            <div class="col-9">
-                                                <h5>Beautiful & Special Moment</h5>
-                                                <p class="text-capitalize">5 october 2021</p>
-                                            </div>
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-3  popular_post__img4 py-2 pl-2">
-                                            </div>
-                                            <div class="col-9">
-                                                <h5>Beautiful & Special Moment</h5>
-                                                <p class="text-capitalize">5 october 2021</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" right_div_post">
-                                    <div class="right_div__title py-4 pl-2 ">
-                                        <h2>Tags</h2>
-                                    </div>
-                                    <div class="tags_main right_sub__div">
-                                        <a href="https://youtu.be/5p8e2ZkbOFU" target="_thapa" class="badge shadow text-capitalize"> html </a>
-                                        <a href="#" class="badge shadow text-capitalize"> css </a>
-                                        <a href="#" class="badge shadow text-capitalize"> js </a>
-                                        <a href="#" class="badge shadow text-capitalize"> react </a>
-                                        <a href="#" class="badge shadow text-capitalize"> vue </a>
-                                        <a href="#" class="badge shadow text-capitalize"> php </a>
-                                        <a href="#" class="badge shadow text-capitalize"> python </a>
-                                        <a href="#" class="badge shadow text-capitalize"> kotlin </a>
-                                        <a href="#" class="badge shadow text-capitalize"> c++ </a>
-                                        <a href="#" class="badge shadow text-capitalize"> java </a>
-                                    </div>
-                                </div>
                                 
                                 <div class=" right_div_post">
                                     <div class="right_div__title py-4 pl-2 ">
@@ -161,7 +104,7 @@ function Home (){
                         </div>
                     </div>
                 </div>
-           </div>
+           
     
     )
 }

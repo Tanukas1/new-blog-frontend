@@ -2,7 +2,9 @@ import { Card, CardContent, Container } from "@material-ui/core";
 import { Formik } from 'formik';
 import  Swal  from  'sweetalert2' ;
 import app_config from '../config';
+import "../stylesheets/signup.css";
 import image from '../images/signup.png';
+
 const Signup = () => {
 
     const url = app_config.api_url;
@@ -51,11 +53,11 @@ const Signup = () => {
         
         <div className="col-md-6 mx-auto">
             <div className="card">
-                <div className="card-body">
+                <div className="card-body content">
                 <img src={image} className="img-fluid" />
                     <div className="row">
                     
-                        <div className="col-md-6"></div>
+                        <div className="col-md-6" ></div>
                         <div className="col-md-6">
                                            
                             <Formik

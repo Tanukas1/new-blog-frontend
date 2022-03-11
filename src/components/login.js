@@ -1,4 +1,4 @@
-import logo from "../images/logo.png";
+import logo from "../images/login.png";
 import { makeStyles } from "@material-ui/core";
 import "../stylesheets/login.css";
 import app_config from "../config";
@@ -59,7 +59,7 @@ const Login = () => {
           className={clsx("card", classes.mycard)}
           style={{ marginTop: "5rem" }}
         >
-          <div className="card-body">
+          <div className="card-body main">
             <div className="col-md-4 mx-auto mt-4">
               <h3>LOGIN</h3>
               <img src={logo} className="img-fluid" />

@@ -17,22 +17,12 @@ const Header = (props) => {
       return (
         <>
           <li className="nav-item">
-            <Link className="nav-link" to="/product">
-              Product
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/addvideo">
-              Add Video
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link className="nav-link" to="/manage">
               Manage Blog
             </Link>
           </li>
           <li className="nav-item">
-            <button onClick={logout} className="btn btn-danger">
+            <button onClick={logout} className="btn btn-success">
               Logout
             </button>
           </li>
@@ -86,7 +76,7 @@ const Header = (props) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/listblog">
+              <Link className="nav-link" to="/addblog">
                 Add Blog
               </Link>
             </li>
